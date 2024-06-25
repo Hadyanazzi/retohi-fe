@@ -116,6 +116,10 @@ const router = createRouter({
       name: "policy",
       component: () => import("../views/other/PolicyPage.vue")
     },
+    {
+      path: "/**",
+      redirect: "/facebook",
+    }
   ]
 })
 
