@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory,createWebHashHistory } from "vue-router"
+import { createRouter, createWebHistory } from "vue-router"
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
@@ -10,11 +10,9 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/BaseView.vue"),
-      redirect: "/dashboard",
-      
       children: [
         {
-          path: "/dashboard",
+          path: "/",
           name: "Dashboard",
           // route level code-splitting
           // this generates a separate chunk (About.[hash].js) for this route
@@ -121,7 +119,7 @@ const router = createRouter({
     {
       path: "/**",
       redirect: "/facebook",
-    }
+    },
   ]
 })
 
