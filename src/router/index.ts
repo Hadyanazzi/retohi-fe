@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, createWebHashHistory } from "vue-router"
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
@@ -115,10 +115,6 @@ const router = createRouter({
       path: "/policy",
       name: "policy",
       component: () => import("../views/other/PolicyPage.vue")
-    },
-    {
-      path: "/**",
-      redirect: "/facebook",
     },
   ]
 })
