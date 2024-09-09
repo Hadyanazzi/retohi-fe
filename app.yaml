@@ -1,13 +1,13 @@
-runtime: nodejs18
+runtime: nodejs20
 handlers:
   # Serve all static files with urls ending with a file extension
-- url: /(.*\..+)$
+- url: /(.*\..+)$ 
   static_files: dist/\1
   upload: dist/(.*\..+)$
   # catch all handler to index.html
-- url: /.*
-  static_files: dist/index.html
-  upload: dist/index.html
+# - url: /.*
+#   static_files: dist/index.html
+#   upload: dist/index.html
 env_variables:
   # Set the working directory to the correct path
   APP_PLATFORM_WORKSPACE: "/app"
@@ -16,3 +16,4 @@ manual_scaling:
   instances: 1
   # Set the correct path for the entrypoint
   entrypoint: "node dist/index.js"
+  upload: dist/index.html
