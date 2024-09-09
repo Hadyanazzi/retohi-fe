@@ -5,9 +5,9 @@ handlers:
   static_files: dist/\1
   upload: dist/(.*\..+)$
   # catch all handler to index.html
-# - url: /.*
-#   static_files: dist/index.html
-#   upload: dist/index.html
+- url: /.*
+  static_files: dist/index.html
+  upload: dist/index.html
 env_variables:
   # Set the working directory to the correct path
   APP_PLATFORM_WORKSPACE: "/app"
