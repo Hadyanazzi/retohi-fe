@@ -1,10 +1,33 @@
-runtime: nodejs20
-handlers:
-  # Serve all static files with urls ending with a file extension
-- url: /(.*\..+)$ 
-  static_files: dist/\1
-  upload: dist/(.*\..+)$
-  # catch all handler to index.html
-- url: /.*
-  static_files: dist/index.html
-  upload: dist/index.html
+# runtime: nodejs20
+# handlers:
+#   # Serve all static files with urls ending with a file extension
+# - url: /(.*\..+)$ 
+#   static_files: dist/\1
+#   upload: dist/(.*\..+)$
+#   # catch all handler to index.html
+# - url: /.*
+#   static_files: dist/index.html
+#   upload: dist/index.html
+
+name: retohi
+services:
+  - name: retohi-fe
+    environment_slug: node-js
+    github:
+      repo: Hadyanazzi/retohi-fe
+      branch: main
+    build_command: 'npm install'
+    run_command: 'npm start'
+    routes:
+      - path: /
+    static_sites:
+      - path: /(.*\..+)$
+        source_dir: dist
+      - path: /.*
+        source_dir: dist
+        index: index.html
+    envs:
+      - key: NODE_ENV
+        value: production
+    instance_size_slug: basic-xxs
+    runtime: nodejs-20
