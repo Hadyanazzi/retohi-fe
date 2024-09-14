@@ -16,7 +16,7 @@ services:
     github:
       repo: Hadyanazzi/retohi-fe
       branch: master
-    build_command: 'npm install'
+    build_command: 'npm install && npm run build'
     run_command: 'npm start'
     routes:
       - path: /
