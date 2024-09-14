@@ -15,7 +15,7 @@ services:
     environment_slug: node-js
     github:
       repo: Hadyanazzi/retohi-fe
-      branch: main
+      branch: master
     build_command: 'npm install'
     run_command: 'npm start'
     routes:
