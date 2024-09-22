@@ -8,7 +8,7 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
-    "start": "npx serve dist"
+    "start": "npx serve -s dist"
   },
   "dependencies": {
     "@vueform/multiselect": "^2.6.6",
