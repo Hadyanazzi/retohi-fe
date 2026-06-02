@@ -1,6 +1,89 @@
 <template>
-    <RouterView />
+    <RouterView v-slot="{ Component, route }">
+      <Transition
+        :name="route.meta.transition || 'page-slide'"
+        mode="out-in"
+        :css="true"
+      >
+        <component :is="Component" :key="route.path" />
+      </Transition>
+    </RouterView>
 </template>
+
+<style>
+/* =============================================================================
+   PAGE TRANSITION - CLS=0 GUARANTEED
+   Uses ONLY composite properties (transform, opacity)
+   ============================================================================= */
+
+/* Page slide transition (default for main routes) */
+.page-slide-enter-active,
+.page-slide-leave-active {
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.page-slide-enter-from {
+  opacity: 0;
+  transform: translateX(20px);  /* Composite: transform only */
+}
+
+.page-slide-enter-to {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.page-slide-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.page-slide-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);  /* Composite: transform only */
+}
+
+/* Fade transition (for login/auth pages) */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 300ms ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Slide up transition (for modals/overlays) */
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.slide-up-enter-from {
+  opacity: 0;
+  transform: translateY(16px);  /* Composite: transform only */
+}
+
+.slide-up-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-up-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.slide-up-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);  /* Composite: transform only */
+}
+
+/* Prevent layout shift during transitions */
+* {
+  will-change: transform, opacity;
+}
+</style>
 
 <script setup lang="ts">
 import axios, { AxiosInstance } from 'axios';
